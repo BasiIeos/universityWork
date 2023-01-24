@@ -1,0 +1,20 @@
+Vasily Kontorer
+Assignment 4
+README file
+1) This program simulates a browser.
+2) stack.h defines stack class;
+   stack.cpp implements methods of stack class;
+   browser.h defines browser class;
+   browser.cpp implements methods of browser class;
+   main.cpp is main part of the program;
+   browser uses stack, main uses browser, main doesn't use browser.
+3) I used linked list to implement stack (easier to delete nodes). Stack is more suitable for this task than a queue, stack has almost every feature that built-in stack has. Browser has 2 stacks: forward
+stack and back stack.
+4) Every part of the assignment is completed.
+5) I tested program on the test given in decription of task, program works perfectly well.
+6) No known bugs.
+To compile program, type "./pex4 [starting_url]", more or less strings will lead to termination of the program. There are 4 commands:
+click URL: program simulates the action of clicking a web page link (with the given URL) in the browser. Program displays a message "You are currently viewing link" where link is replaced by the URL entered with the command.
+back: program simulates the action of pressing the back button in the browser. Program shows a message "You are currently viewing link" where link is replaced by the previous web page's URL. If there isn't a previous web page, program shows a message "can't move back any more".
+forward: program simulates the action of pressing the forward button in the browser. Program shows a message "You are currently viewing link" where link is replaced by the next web page's URL. If there isn't a previous web page, program shows a message "can't move forward any more".
+exit: program simulates the action of close the web browser and terminates.

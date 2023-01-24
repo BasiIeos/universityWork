@@ -1,0 +1,51 @@
+M68HC11 GAS  main.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start MC68HC11 gcc assembly output
+   3                 	;;; gcc compiler 3.3.6-m68hc1x-20060122
+   4                 	;;; Command:	/usr/lib/gcc-lib/m68hc11/3.3.6-m68hc1x-20060122/cc1 -quiet -D__GNUC__=3 -D__GNUC_MINOR
+   5                 	;;; Compiled:	Thu Oct 18 18:10:48 2018
+   6                 	;;; (META)compiled by GNU C version 6.3.0 20170221.
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 		.mode mshort
+  10                 		; extern	wstr
+  11                 		; extern	s1
+  12                 		; extern	wcrlf
+  13                 		; extern	s2
+  14                 		.sect	.text
+  15                 		.globl	_start
+  16                 		.type	_start,@function
+  17                 	_start:
+  18                 	; Begin inline assembler code
+  19                 	#APP
+  20 0000 8E 00 00    		lds #_stack
+  21                 	; End of inline assembler code
+  22                 	#NO_APP
+  23 0003 CC 00 00    		ldd	#s1
+  24 0006 BD 00 00    		bsr	wstr
+  25 0009 BD 00 00    		bsr	wcrlf
+  26 000c CC 00 00    		ldd	#s2
+  27 000f BD 00 00    		bsr	wstr
+  28 0012 BD 00 00    		bsr	wcrlf
+  29                 	; Begin inline assembler code
+  30                 	#APP
+  31 0015 3F          		swi
+  32                 	; End of inline assembler code
+  33                 	#NO_APP
+  34 0016 39          		rts
+  35                 		.size	_start, .-_start
+  36                 	; Begin inline assembler code
+  37                 	#APP
+  38 0017 54 68 65 20 		s1: .ascii "The string is" 
+  38      73 74 72 69 
+  38      6E 67 20 69 
+  38      73 
+  39 0024 04          	 .byte 0x4 
+  40                 	
+  41 0025 50 65 74 65 		s2: .ascii "Peter" 
+  41      72 
+  42 002a 04          	 .byte 0x4 
+  43                 	
+  44                 		.ident	"GCC: (GNU) 3.3.6-m68hc1x-20060122"

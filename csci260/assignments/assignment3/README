@@ -1,0 +1,17 @@
+Vasily Kontorer
+Assignment 3
+README file
+Overview: This program simulates "influence" relationship using a graph and provides answer to some queries;
+Design: 3 files: graph.h for implementation of class Graph, graph.cpp for implementation of modules for class Graph, main.cpp for main file. This is the easiest way to make the program work (at least for me);
+Implementation: I used vector to implement the graph because it's a very functional ADT. I could use linked list but it's not as functional and or easy to work with. It has a disadvantage though - it has to use numbers for users, so I had to use map to make connections between usernames and their numbers;
+Analysis: 
+	influence - O(n^2);
+	controversial - O(n^2);
+	outreach - O(n^2);
+	link - O(n^2);
+	update - O(1);
+	quit - O(n^2);
+Accoplishment: I have completed all parts of the assignment;
+Testing: I have tested the program on the samplem file given on the assignment page, it works with every function;
+Known bugs: no known bugs;
+Note: I have not put in a checker for information provided by user because it was not stated on the assignment page.

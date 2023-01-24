@@ -1,0 +1,7 @@
+﻿load x 
+add y 
+store z 
+halt 
+x, hex a 
+y, hex b 
+z, hex 2 

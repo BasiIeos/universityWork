@@ -1,0 +1,5 @@
+1) Compile the program using command make, execute the program with command ./pex3 and an option of what depth does the engine go to (default is 3)
+2) Minimax algorithm is implemented in the minimax function in the c4player.h file; alpha-beta pruning is done in the same function.
+3) Evaluation is based on how many moves it would take for the player to win. Score is positive if the player can win, 1 with his last chip, 2 with his pre-last chip and so on. Score is negative if the player loses no matter what, -1 if his opponent wins with last stone, etc.
+4) There are many and the program basically does not work. The 2 that I have found are that it incorrectly evaluates if the position is already finished (if 1 player won) and it seg faults if the chip is placed on full column. I could not fix it in time, sorry.
+5) Please just read the code and maybe give me some marks based on the logic. I know the program is not working and I do not deserve a lot of marks, but I believe the main ideas are done correctly. Thanks!

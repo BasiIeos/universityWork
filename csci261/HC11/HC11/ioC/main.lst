@@ -1,0 +1,134 @@
+M68HC11 GAS  soft.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start MC68HC11 gcc assembly output
+   3                 	;;; gcc compiler 3.3.6-m68hc1x-20060122
+   4                 	;;; Command:	/usr/lib/gcc-lib/m68hc11/3.3.6-m68hc1x-20060122/cc1 -quiet -D__GNUC__=3 -D__GNUC_MINOR
+   5                 	;;; Compiled:	Wed Nov  7 20:29:53 2018
+   6                 	;;; (META)compiled by GNU C version 6.3.0 20170221.
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 		.mode mshort
+  10                 		.globl	str
+  11                 		.sect	.data
+  12                 		.type	str, @object
+  13                 		.size	str, 28
+  14                 	str:
+  15 0000 48 65 6C 6C 		.string	"Hello World CSCI 261 in C \004"
+  15      6F 20 57 6F 
+  15      72 6C 64 20 
+  15      43 53 43 49 
+  15      20 32 36 31 
+  16                 		; extern	wstr
+  17                 		; extern	wcrlf
+  18                 		; extern	getc
+  19                 		; extern	putc
+  20                 		.sect	.text
+  21                 		.globl	_start
+  22                 		.type	_start,@function
+  23                 	_start:
+  24                 	; Begin inline assembler code
+  25                 	#APP
+  26 0000 8E 00 00    		lds #_stack
+  27                 	; End of inline assembler code
+  28                 	#NO_APP
+  29 0003 CC 00 00    		ldd	#str
+  30 0006 BD 00 00    		bsr	wstr
+  31 0009 BD 00 00    		bsr	wcrlf
+  32                 	.L11:
+  33 000c BD 00 00    		bsr	getc
+  34 000f F7 00 00    		stab	ch
+  35 0012 C1 30       		cmpb	#48
+  36 0014 26 0C       		bne	.L5
+  37 0016 C6 30       		ldab	#48
+  38 0018 BD 00 00    		bsr	putc
+  39 001b CE 10 00    		ldx	#4096
+  40 001e 6F 00       		clr	0,x
+  41 0020 20 EA       		bra	.L11
+  42                 	.L5:
+  43 0022 C1 31       		cmpb	#49
+  44 0024 26 0E       		bne	.L7
+  45 0026 C6 31       		ldab	#49
+  46 0028 BD 00 00    		bsr	putc
+  47 002b CE 10 00    		ldx	#4096
+  48 002e C6 FF       		ldab	#-1
+  49 0030 E7 00       		stab	0,x
+  50 0032 20 D8       		bra	.L11
+  51                 	.L7:
+  52 0034 C1 32       		cmpb	#50
+  53 0036 26 D4       		bne	.L11
+M68HC11 GAS  soft.s 			page 2
+
+
+  54                 	; Begin inline assembler code
+  55                 	#APP
+  56 0038 3F          		swi
+  57                 	; End of inline assembler code
+  58                 	#NO_APP
+  59 0039 20 D1       		bra	.L11
+  60                 		.size	_start, .-_start
+  61                 		.comm	ch,1,1
+  62                 		.ident	"GCC: (GNU) 3.3.6-m68hc1x-20060122"
+   1                 	;===================
+   2                 	; soft registers
+   3                 	;===================
+   4                 	.sect softregs
+   5                 	.global _.d1
+   6                 	_.d1: .word
+   7                 	.global _.tmp
+   8                 	_.tmp: .word
+   9                 	.global _.z
+  10                 	_.z: .word
+  11                 	.global _.xy
+  12                 	_.xy: .word
+  13                 	.global _.frame
+  14                 	_.frame: .word
+  15                 	
+M68HC11 GAS  soft.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+              main.s:0      .text:0000000000000000 L0F0
+              main.s:14     .data:0000000000000000 str
+              main.s:23     .text:0000000000000000 _start
+              main.s:26     .text:0000000000000000 L0L0
+              main.s:29     .text:0000000000000003 L0L1
+              main.s:30     .text:0000000000000006 L0L2
+              main.s:31     .text:0000000000000009 L0L3
+              main.s:33     .text:000000000000000c L0L4
+              main.s:34     .text:000000000000000f L0L5
+                            *COM*:0000000000000001 ch
+              main.s:35     .text:0000000000000012 L0L6
+              main.s:36     .text:0000000000000014 L0L7
+              main.s:37     .text:0000000000000016 L0L8
+              main.s:38     .text:0000000000000018 L0L9
+              main.s:39     .text:000000000000001b L0L10
+              main.s:40     .text:000000000000001e L0L11
+              main.s:41     .text:0000000000000020 L0L12
+              main.s:43     .text:0000000000000022 L0L13
+              main.s:44     .text:0000000000000024 L0L14
+              main.s:45     .text:0000000000000026 L0L15
+              main.s:46     .text:0000000000000028 L0L16
+              main.s:47     .text:000000000000002b L0L17
+              main.s:48     .text:000000000000002e L0L18
+              main.s:49     .text:0000000000000030 L0L19
+              main.s:50     .text:0000000000000032 L0L20
+              main.s:52     .text:0000000000000034 L0L21
+              main.s:53     .text:0000000000000036 L0L22
+              main.s:56     .text:0000000000000038 L0L23
+              main.s:59     .text:0000000000000039 L0L24
+              soft.s:0      .text:000000000000003b L0F1
+              soft.s:6      softregs:0000000000000000 _.d1
+              soft.s:8      softregs:0000000000000000 _.tmp
+              soft.s:10     softregs:0000000000000000 _.z
+              soft.s:12     softregs:0000000000000000 _.xy
+              soft.s:14     softregs:0000000000000000 _.frame
+
+UNDEFINED SYMBOLS
+_stack
+wstr
+wcrlf
+getc
+putc

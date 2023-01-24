@@ -1,0 +1,26 @@
+Assignment 4
+by Vasily Kontorer
+1) Relation instances B and C satisfy the functional dependency (name -> price);
+2)
+   a. A; CE are candidate keys;
+   b. Because E->D is not trivial and E is not superkey;
+   c. {AC; AD; BC; BE; ED};
+   d. No, it isn't;
+3)
+   a. create view DeptInfo(deptName, avgsalary) as select avgsalary, deptName from Employees;
+   b. grand select, update on Employees to anchor;
+   c. grand select on Employees to anchor with grant option;
+4)
+   i. a. T1->T3(C); T3->T2(A);
+      b. T1T3T2;
+      c. No, w3(A) is before r2(A);
+  ii. a. T2->T4(D); T4->T3(B);
+      b. T1T2T4T3, T2T1T4T3, T2T4T1T3, T2T4T3T1;
+      c. No, w2(D) is before r4(D);
+5)
+   a. r2(y);w2(y);r2(x);w2(x);C2
+   b. All locks released at once when the transaction commits or aborts;
+6)
+   a. It's definitely not serializable since phantoms are allowed, but I can't determine between the other ones since read isn't logged;
+   b. Neither 2PL nor S2PL can generate a schedule that's consistent with this WAL log becuase transactions C and B write data into x before either is committed or aborted;
+   c. u - 301.5; v - TRUE; w - 20; x - 35;

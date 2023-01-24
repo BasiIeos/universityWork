@@ -1,0 +1,8 @@
+Overview: I had to implement a priority queue to simulate a computer job queue;
+Design: There are 4 files in my design: pqueue.h - implementation and modules for priority queue, joblist.h - implementation of job list itself, joblist.cpp - modules for job list, and main.cpp - main part of the program;
+Implementation: My priority queue is a binary heap. I used vector to implement a priority queue, joblist is directly a priority queue. I could make a priority queue for array or linked list, but vector is easier than linked list and has more functionality than array. Vector uses a lot of memory though, so if I had a lot of data, I would use a linked list;
+Analysis: submit, execute, random are all O(log n) (all of them could potentially go through the heap from top to bottom or vice versa);
+Accomplishment: I have completed every part of the assignment;
+Testing: I have tested the program on the example batch.txt given in assignment and I have tested each of the functions of job list, everything worked.
+Known bugs: no known bugs;
+Note: the range of a floating number for estimated time I've checked for is (0, +infinity);

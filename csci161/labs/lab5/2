@@ -1,0 +1,16 @@
+#include "complex.h"
+
+// Implementation of methods of ComplexNumber class
+
+ComplexNumber :: ComplexNumber()
+{
+	real = 1;
+	imag = 1;
+}
+
+ComplexNumber :: ComplexNumber(double a, double b)
+{
+	real = a;
+	imag = b;
+}
+

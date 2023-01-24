@@ -1,0 +1,23 @@
+Report for Assignment 1 by Vasily Kontorer
+1) Use 2 commands:
+make
+./pex1 [testfilename]
+Test files should be in the same base folder as the code and output files
+2) The format of the input for each test file is:
+The number of full tubes
+The number of empty tube(s)
+For each full tube:
+Tube 1: Ball-colours from bottom to top
+Tube ...
+3 example files are given
+3) If the program finds a solution, the output is as such:
+Solution found! Here's the algorithm:
+Move ball from tube x to tube y
+...
+4) A state in my program is encoded as string with letters for balls and spaces as emprty spaces
+5) The successor function is in the else clause right after "make moves from the "best" state" comment, it looks for every possible move from a given state, checks if the state after the move has already been checked and puts the state in the priority queue if it has not already been checked
+6) The queue prioritizes states with most tubes completed (or empty) so if there is a state with all tubes being completed or empty, that is the final state. I have a function checking number of completed or empty tubes
+7) My heuristics is number of completed or empty tubes since that directly correlates with the final state being the best.
+8) The state that is going to be checked is the most prioritized (i.e. with most tubes empty or completed) by definition of my priority queue.
+9) On big tests the program throws st9bad_alloc, otherwise no known bugs.
+10) No further comments

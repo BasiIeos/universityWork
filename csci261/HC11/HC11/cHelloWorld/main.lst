@@ -1,0 +1,70 @@
+M68HC11 GAS  main.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start MC68HC11 gcc assembly output
+   3                 	;;; gcc compiler 3.3.6-m68hc1x-20060122
+   4                 	;;; Command:	/usr/lib/gcc-lib/m68hc11/3.3.6-m68hc1x-20060122/cc1 -quiet -D__GNUC__=3 -D__GNUC_MINOR
+   5                 	;;; Compiled:	Thu Nov 16 10:43:46 2017
+   6                 	;;; (META)compiled by GNU C version 6.3.0 20170221.
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 		.mode mshort
+  10                 		.globl	str
+  11                 		.sect	.data
+  12                 		.type	str, @object
+  13                 		.size	str, 100
+  14                 	str:
+  15 0000 48 65 6C 6C 		.string	"Hello World \004"
+  15      6F 20 57 6F 
+  15      72 6C 64 20 
+  15      04 00 
+  16 000e 00 00 00 00 		.zero	86
+  16      00 00 00 00 
+  16      00 00 00 00 
+  16      00 00 00 00 
+  16      00 00 00 00 
+  17                 		; extern	wstr
+  18                 		; extern	wcrlf
+  19                 		.sect	.text
+  20                 		.globl	_start
+  21                 		.type	_start,@function
+  22                 	_start:
+  23 0000 CC 00 00    		ldd	#str
+  24 0003 BD 00 00    		bsr	wstr
+  25 0006 BD 00 00    		bsr	wcrlf
+  26 0009 C6 58       		ldab	#88
+  27 000b F7 00 01    		stab	str+1
+  28 000e CC 00 00    		ldd	#str
+  29 0011 BD 00 00    		bsr	wstr
+  30 0014 BD 00 00    		bsr	wcrlf
+  31                 	; Begin inline assembler code
+  32                 	#APP
+  33 0017 3F          		swi
+  34                 	; End of inline assembler code
+  35                 	#NO_APP
+  36 0018 39          		rts
+  37                 		.size	_start, .-_start
+  38                 		.ident	"GCC: (GNU) 3.3.6-m68hc1x-20060122"
+M68HC11 GAS  main.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+              main.s:0      .text:0000000000000000 L0F0
+              main.s:14     .data:0000000000000000 str
+              main.s:22     .text:0000000000000000 _start
+              main.s:23     .text:0000000000000000 L0L0
+              main.s:24     .text:0000000000000003 L0L1
+              main.s:25     .text:0000000000000006 L0L2
+              main.s:26     .text:0000000000000009 L0L3
+              main.s:27     .text:000000000000000b L0L4
+              main.s:28     .text:000000000000000e L0L5
+              main.s:29     .text:0000000000000011 L0L6
+              main.s:30     .text:0000000000000014 L0L7
+              main.s:33     .text:0000000000000017 L0L8
+              main.s:36     .text:0000000000000018 L0L9
+
+UNDEFINED SYMBOLS
+wstr
+wcrlf

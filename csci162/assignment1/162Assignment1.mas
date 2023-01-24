@@ -1,0 +1,41 @@
+﻿loop, input
+	subt secret
+	skipcond 0
+    jump higherorequal
+    jump lower
+
+equal, load secret
+	output
+    store doubleinput
+	jns double
+    load doubleoutput
+    store doubleinput
+	jns double
+
+halt
+
+lower, load h
+    output
+    jump loop
+
+higherorequal, skipcond 800
+	jump equal
+    jump higher
+
+higher, load l
+    output
+    jump loop
+
+double, dec 0
+	load doubleinput
+    add doubleinput
+    output
+    store doubleoutput
+    jumpi double
+
+secret, hex 4A
+h, hex 48
+l, hex 4C
+number, dec 0
+doubleinput, dec 0
+doubleoutput, dec 0

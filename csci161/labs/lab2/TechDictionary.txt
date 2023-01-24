@@ -1,0 +1,7 @@
+5
+binary : base-2 numeral system
+data : a set of values of qualitative or quantitative variables
+kilo : multiplication by one thousand (or 1024 in CS)
+pointer : the variable that stores the address of another variable
+variable : an element that is liable to vary or change
+

@@ -1,0 +1,66 @@
+M68HC11 GAS  foolib.s 			page 1
+
+
+   1                 	;======================
+   2                 	; Buff routine stubs
+   3                 	;======================
+   4                 	
+   5                 	set OUTSTRGO, 0xffca
+   6                 	set OUTCRLF, 0xffc4
+   7                 	
+   8                 	.global wstr
+   9                 	.global xwstr
+  10                 	
+  11                 	.global wcrlf
+  12                 	
+  13 0000 BD FF C4    	wcrlf:  jsr OUTCRLF
+  14 0003 39          	        rts
+  15                 	
+  16 0004 3C          	wstr:   pshx     ; save x 
+  17 0005 8F          	        xgdx
+  18 0006 3C          		pshx     ; save d
+  19 0007 07          	        tpa      ; save ccr
+  20 0008 36          		psha
+  21                 	
+  22 0009 BD FF CA    	        jsr OUTSTRGO   
+  23                 	
+  24 000c 32          		pula    
+  25 000d 06          		tap      ; restore ccr
+  26 000e 38          		pulx     ; restore d
+  27 000f 8F          		xgdx
+  28 0010 38          		pulx     ; restore x
+  29 0011 39          	xwstr:  rts
+  30                 	
+  31                 	;===================
+  32                 	; soft registers
+  33                 	;===================
+  34                 	.sect softregs
+  35                 	.global _.d1
+  36                 	_.d1: .word
+M68HC11 GAS  foolib.s 			page 2
+
+
+DEFINED SYMBOLS
+            foolib.s:0      .text:0000000000000000 L0F0
+            foolib.s:5      *ABS*:000000000000ffca OUTSTRGO
+            foolib.s:6      *ABS*:000000000000ffc4 OUTCRLF
+            foolib.s:16     .text:0000000000000004 wstr
+            foolib.s:29     .text:0000000000000011 xwstr
+            foolib.s:13     .text:0000000000000000 wcrlf
+            foolib.s:13     .text:0000000000000000 L0L0
+            foolib.s:14     .text:0000000000000003 L0L1
+            foolib.s:16     .text:0000000000000004 L0L2
+            foolib.s:17     .text:0000000000000005 L0L3
+            foolib.s:18     .text:0000000000000006 L0L4
+            foolib.s:19     .text:0000000000000007 L0L5
+            foolib.s:20     .text:0000000000000008 L0L6
+            foolib.s:22     .text:0000000000000009 L0L7
+            foolib.s:24     .text:000000000000000c L0L8
+            foolib.s:25     .text:000000000000000d L0L9
+            foolib.s:26     .text:000000000000000e L0L10
+            foolib.s:27     .text:000000000000000f L0L11
+            foolib.s:28     .text:0000000000000010 L0L12
+            foolib.s:29     .text:0000000000000011 L0L13
+            foolib.s:36     softregs:0000000000000000 _.d1
+
+NO UNDEFINED SYMBOLS

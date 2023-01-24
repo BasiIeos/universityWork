@@ -1,0 +1,58 @@
+Assignment 5 by Vasily Kontorer
+
+1)
+I. Neither, true when P=Q=1 and false when P=1 and Q=0;
+II. Neither, true when P=Q=1 and false when P=0 and Q=1;
+III. True, can only be false if P∧Q=1 and P=0, but if P∧Q=1 then P=Q=1 therefore it is never false;
+IV. Neither, true when P=Q=1 and false when P=0 and Q=1;
+V. True, ¬P ∨ Q = P ⇒ Q and A ⇒ A is true;
+VI. Neither, true when P = 0 and false when P=1;
+VII. False, it is false when P=1 and when P=0;
+VIII. Neither, true when P=Q=1 and false when P=1 and Q=0;
+IX. True, the only way is can be false is if P=1 and Q ⇒ P=0 but Q ⇒ P=0 implies that Q=1 and P=0 therefore it is never false.
+X. Neither, true when P=Q=1 and false when P=1 and Q=0;
+
+2)
+Constants: Sign Language; Lillan; Kaput; Marvin; Country Lilliput;
+
+Predicates: is language = L(x); is human = H(x); human speaks language = SL(human, language); is official language of a country = OL(language, country), is politician in a country = P(human, country), is citizen in a country = C(human, country), is human supporting politician = S(human, politician)
+
+I. (L(Sign Language)) ∧ (L(Lillan)) ∧ (L(Kaput))
+
+II. ∃x (L(x)) ∧ ¬(Sign Language=x) ∧ ¬(Lillan=x) ∧ ¬(Kaput=x)
+
+III. ∀x (H(x)) ∧ (∃y L(y) ∧ SL(x,y))
+
+IV. ∀x (H(x)) ∧ ((¬(x = Marvin) ∧ (∃y L(y) ∧ SL(x,y))) ∨ ((x=Marvin) ∧ (∀y L(y) ∧ ¬SL(x,y))))
+
+V. ∀x (H(x)) ∧ (∃y L(y) ∧ ¬SL(x,y))
+
+VI. (OL(Lillan, Country Lilliput)) ∧ (OL(Kaput, Country Lilliput)) ∧ (∀y L(y) ∧ ¬(y = Lillan) ∧ ¬(y = Kaput) ∧ ¬(OL(y, Country Lilliput)))
+
+VII. ∀x (P(x, Country Lilliput)) ⇒ (H(x) ∧ C(x, Country Lilliput) ∧ SL(x, Lillan) ∧ SL(x, Kaput))
+
+VIII. ∃x (H(x)) ∧ C(x, Country Lilliput) ∧ SL(x, Lillan) ∧ SL(x, Kaput) ∧ (¬P(x, Country Lilliput))
+
+IX. ∀x H(x) ∧ P(x, Country Lilliput) ∧ (∃y H(y) ∧ S(y, x))
+
+X. ∀x H(x) ∧ P(x, Country Lilliput) ∧ (∃y H(y) ∧ ¬S(y, x))
+
+3)
+I. θ = {X/‘A’, Y/F(‘A’), Z/‘B’};
+II. θ = {X/‘D’, Z/F(‘D’), Y/‘G’}
+III. Can’t be unified, F(‘D’)=‘G’ might not be true;
+IV. θ = {F(X)/F(‘A’), Y/‘A’} - F(X)/F(‘A’) means X for which F(X)=F(‘A’), there might be many such X;
+V. θ = {F(X)/F(‘G’), Z/F(‘G’), Y/X} - F(X)/F(‘G’) means X for which F(X)=F(‘G’), there might be many such X;
+
+5) For each node ES-LS
+S: 0 - 0;
+A: 0 - 0;
+B: 0 - 5;
+C: 0 - 10;
+D: 20 - 50;
+E: 20 - 20;
+G: 15 - 40;
+H: 45 - 45;
+I: 65 - 65;
+F: 70 - 70;
+Critical path: S - A - E - H - I - F.

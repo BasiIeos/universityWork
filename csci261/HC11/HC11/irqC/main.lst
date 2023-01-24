@@ -1,0 +1,114 @@
+M68HC11 GAS  soft.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start MC68HC11 gcc assembly output
+   3                 	;;; gcc compiler 3.3.6-m68hc1x-20060122
+   4                 	;;; Command:	/usr/lib/gcc-lib/m68hc11/3.3.6-m68hc1x-20060122/cc1 -quiet -D__GNUC__=3 -D__GNUC_MINOR
+   5                 	;;; Compiled:	Thu Nov 16 08:37:30 2017
+   6                 	;;; (META)compiled by GNU C version 6.3.0 20170221.
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 		.mode mshort
+  10                 		; extern	irqCount
+  11                 		.sect	.text
+  12                 		.globl	_start
+  13                 		.type	_start,@function
+  14                 	_start:
+  15 0000 7F 00 00    		clr	COUNT
+  16 0003 CE 00 EE    		ldx	#238
+  17 0006 C6 7E       		ldab	#126
+  18 0008 E7 00       		stab	0,x
+  19 000a CE 00 EF    		ldx	#239
+  20 000d CC 00 00    		ldd	#irqCount
+  21 0010 ED 00       		std	0,x
+  22                 	; Begin inline assembler code
+  23                 	#APP
+  24 0012 0E          		cli
+  25                 	; End of inline assembler code
+  26                 	#NO_APP
+  27                 	.L2:
+  28 0013 20 FE       		bra	.L2
+  29                 		.size	_start, .-_start
+  30                 		.globl	irqCount
+  31                 		.type	irqCount,@function
+  32                 		.interrupt	irqCount
+  33                 	irqCount:
+  34 0015 DE 00       		ldx	*_.tmp
+  35 0017 3C          		pshx
+  36 0018 DE 00       		ldx	*_.z
+  37 001a 3C          		pshx
+  38 001b DE 00       		ldx	*_.xy
+  39 001d 3C          		pshx
+  40 001e 7C 00 00    		inc	COUNT
+  41                 	; Begin inline assembler code
+  42                 	#APP
+  43                 		xirqCount:
+  44                 	; End of inline assembler code
+  45                 	#NO_APP
+  46 0021 38          		pulx
+  47 0022 DF 00       		stx	*_.xy
+  48 0024 38          		pulx
+  49 0025 DF 00       		stx	*_.z
+  50 0027 38          		pulx
+  51 0028 DF 00       		stx	*_.tmp
+  52 002a 3B          		rti
+  53                 		.size	irqCount, .-irqCount
+  54                 		.comm	COUNT,1,1
+  55                 		.ident	"GCC: (GNU) 3.3.6-m68hc1x-20060122"
+   1                 	;===================
+   2                 	; soft registers
+M68HC11 GAS  soft.s 			page 2
+
+
+   3                 	;===================
+   4                 	.sect softregs
+   5                 	.global _.d1
+   6                 	_.d1: .word
+   7                 	.global _.tmp
+   8                 	_.tmp: .word
+   9                 	.global _.z
+  10                 	_.z: .word
+  11                 	.global _.xy
+  12                 	_.xy: .word
+  13                 	
+M68HC11 GAS  soft.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+              main.s:0      .text:0000000000000000 L0F0
+              main.s:14     .text:0000000000000000 _start
+              main.s:15     .text:0000000000000000 L0L0
+                            *COM*:0000000000000001 COUNT
+              main.s:16     .text:0000000000000003 L0L1
+              main.s:17     .text:0000000000000006 L0L2
+              main.s:18     .text:0000000000000008 L0L3
+              main.s:19     .text:000000000000000a L0L4
+              main.s:20     .text:000000000000000d L0L5
+              main.s:33     .text:0000000000000015 irqCount
+              main.s:21     .text:0000000000000010 L0L6
+              main.s:24     .text:0000000000000012 L0L7
+              main.s:28     .text:0000000000000013 L0L8
+              main.s:34     .text:0000000000000015 L0L9
+              soft.s:8      softregs:0000000000000000 _.tmp
+              main.s:35     .text:0000000000000017 L0L10
+              main.s:36     .text:0000000000000018 L0L11
+              soft.s:10     softregs:0000000000000000 _.z
+              main.s:37     .text:000000000000001a L0L12
+              main.s:38     .text:000000000000001b L0L13
+              soft.s:12     softregs:0000000000000000 _.xy
+              main.s:39     .text:000000000000001d L0L14
+              main.s:40     .text:000000000000001e L0L15
+              main.s:43     .text:0000000000000021 xirqCount
+              main.s:46     .text:0000000000000021 L0L16
+              main.s:47     .text:0000000000000022 L0L17
+              main.s:48     .text:0000000000000024 L0L18
+              main.s:49     .text:0000000000000025 L0L19
+              main.s:50     .text:0000000000000027 L0L20
+              main.s:51     .text:0000000000000028 L0L21
+              main.s:52     .text:000000000000002a L0L22
+              soft.s:0      .text:000000000000002b L0F1
+              soft.s:6      softregs:0000000000000000 _.d1
+
+NO UNDEFINED SYMBOLS

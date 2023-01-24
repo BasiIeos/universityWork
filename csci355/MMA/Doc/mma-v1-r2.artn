@@ -1,0 +1,76 @@
+MMA Ver 1 Rev 2 (Abstract RTN)
++++++++++++++++++++++++++++++++
+
+Processor State:
+----------------
+PC<11..0>:		Program Counter
+ACC<15..0>:		Accumulator
+IR<15..0>:		Instruction Register
+Z:                      1-bit Zero flag
+fault:			1-bit Fault Indicator 
+halt:			1-bit Halt Indicator
+reset:			Reset Signal
+
+Main Memory:
+------------
+MEM[0..2**12-1]<15..0>
+
+Instruction Format/Operand Address
+-----------------------------------
+opcode<3..0> := IR<15..12>
+operandAddress<11..0> := IR<11..0> 
+
+Program Status Word
+-------------------
+PSW<15..0> := Z#15@0:
+
+Instruction Interpretation
+--------------------------
+ins_interpretation := (
+Reset -> (PC <- 0x0: halt <- 0x0: fault <- 0x0); ins_interpretation):
+(NOT Reset) and (NOT fault) -> (IR <- MEM[PC]; set_fault; (NOT fault) -> (PC <- PC+1; ins_exe)
+):
+
+Fault Detection
+---------------
+set_fault := fault <- NOT (0 <= opcode <= 0x7)
+
+Instruction Execution
+---------------------
+ins_exe := (
+   noop (:= opcode=0) ->  :
+   halt (:= opcode=1) ->  halt <- 0x1:
+   lda (:= opcode=2) -> ACC <- MEM[operandAddress]:
+   sto (:= opcode=3) -> MEM[operandAddress] <-ACC:
+   add (:= opcode=4) -> ACC <- ACC + MEM[operandAddress]; 
+                        Z <- NOT (ACC<15> OR ACC<6> .. OR ACC<0>):
+   sub (:= opcode=5) -> ACC <- ACC - MEM[operandAddress]; 
+                        Z <- NOT (ACC<15> OR ACC<6> .. OR ACC<0>):
+   jmp (:= opcode=6) -> PC <- operandAddress:
+   jnz (:= opcode=7) -> (NOT Z) -> PC <- operandAddress:
+); ins_interpretation):
+
+Memory Map
+----------
+PSW mapped to 0xFFB
+Port A (read only) mapped to 0xFFC
+Port B (write only) mapped to 0xFFD
+Port C (read only) mapped to 0xFFE
+Port D (write only) mapped to 0xFFF
+
+Notation (From Computer Systems Design and Architecture Heuring and Jordan)
+--------
+->            if-then: true condition on left yields value and/or action
+              on right
+
+<-            Register transfer: register on LHS stores value from RHS
+
+:             Parallel separator: actions or evaluations carried out
+              simultaneously
+
+;             Sequential separator: RHS evaluated and/or performed
+              after LHS
+
+@             Replication: LHS repetitions of RHS are concatenated
+
+:=            Definition: text substitution

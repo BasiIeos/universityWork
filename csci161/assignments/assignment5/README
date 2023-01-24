@@ -1,0 +1,22 @@
+Vasily Kontorer
+Assignment 5
+README file
+
+1. This program simulates a dedicated Wikipedia for Countries called WikiCountry that manages the information of a list of the countries. List of commands:
+list - list the names (and only the names) of all countries.
+show - show the full information of a country whose name is entered by the user as parameter to this command. If there is no such a country with the given name in WikiCountry, your program should display an appropriate error message.
+remove - remove a country's entry from WikiCountry (presumably because it is wrongly added into WikiCountry and there is no such country in the world). The country's name will be entered by the user as parameter to this command. Your program should show a message to confirm if the action is successful, or show an appropriate error message if there isn't such a country in WikiCountry.
+add - Add a new country's entry to WikiCountry. Your program will ask the user to enter the country's name first, and make sure the country's name doesn't alreay exist in WikiCountry. If the name already exists, abort this action. Otherwise, ask user to enter the rest of the information about this country, including its capital's name, its official language(s), its area in kilometers, its most recent estimated population and a description of this new country. Each piece of data should be entered in a line.
+update - Other than the country's name, the user can update any information about a country. Your program should ask the user to enter the country's name to identify the country first. Then your program should ask the user which data field he/she wants to change and what is the updated information for the give data field. If the country's name doesn't exist in WikiCountry, or the data field's name is not recognized by your program, show an appropriate error message.
+help - Show the help message of the commands your program recognizes.
+exit - Export all the countries' information back to the file "wikiCountry.txt" and then terminate the program. The old data in the file should be overwritten. (And don't forget that the first line is a number indicating how many countries there are.)
+
+2. 4 parts: implemetation of Dictionary class and its methods (dictionary.h), implemetation of Country List class (countrylist.h) and its methods (countrylist.cpp) and main part of the program (main.cpp).
+
+3. In dictionary, I used array. It is faster to access a node of array, but it's slower to remove a node comparing to Linked List which can also be used to implement the Dictionary. Country List is basically a modded version of Dictionary, with country's name as its key and additional structure containing everything else as object.
+
+4. I have completed every part of the assignment.
+
+5. I tested the program on the test given in assignment, everything worked just fine.
+
+6. No known bugs.

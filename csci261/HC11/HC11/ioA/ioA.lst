@@ -1,0 +1,144 @@
+M68HC11 GAS  ioA.s 			page 1
+
+
+   1                 	;============================================-=
+   2                 	; File:
+   3                 	       .file "ioA.s" 
+   4                 	; Behaviour: 
+   5                 	;      while (1) 
+   6                 	;         reads input from serial line
+   7                 	;         if '0' then write 0x00 to port A and echo '0' back on serial line 
+   8                 	;         else if '1' write 0xFF to port A and echo '1' back on serial line
+   9                 	;         else if '2' re-enter BUFFALO monitor
+  10                 	;
+  11                 	; Physical Setup:
+  12                 	;    Connect EVBU to breadboard with a common ground
+  13                 	;    Connect PA6 to a led on breadboard
+  14                 	; Assumptions:
+  15                 	;      none 
+  16                 	; Board:
+  17                 	;      CME11-E9-EVBU
+  18                 	; Author:
+  19                 	;      Peter Walsh Oct 19 2018
+  20                 	;============================================-=
+  21                 	
+  22                 	set RBASE, 0x1000
+  23                 	
+  24                 	set PORTA, 0x0
+  25                 	set ONLED, 0xff
+  26                 	set OFFLED, 0x0
+  27                 	set INCHAR, 0xffcd
+  28                 	set OUTA, 0xffb8
+  29                 	set CRLF, 0xffc4
+  30                 	set OUTSTRGO, 0xffca
+  31                 	set eot, 0x4
+  32                 	
+  33                 	;----------------------------------------------
+  34                 	;            Text Section (code and data)
+  35                 	;----------------------------------------------
+  36                 	.sect .text
+  37                 	.global _start
+  38                 	
+  39 0000 8E 00 00    	_start:  lds #_stack
+  40                 	
+  41 0003 CE 00 00    	         ldx #PROMPT     ; get starting address of prompt
+  42 0006 BD FF CA    	         jsr OUTSTRGO    ; write Hello World
+  43 0009 BD FF C4    	         jsr CRLF
+  44                 	
+  45 000c CE 10 00    	         ldx #RBASE
+  46 000f 86 00       	         ldaa #OFFLED
+  47 0011 A7 00       	         staa PORTA,x
+  48                 	
+  49 0013 BD FF CD    	again:   jsr INCHAR
+  50                 	
+  51 0016 81 30       	         cmpa #0x30
+  52 0018 26 09       	         bne notClear
+  53                 	
+  54                 	         #echo '0' and clead led
+  55 001a BD FF B8    	         jsr OUTA
+  56 001d 86 00       	         ldaa #OFFLED
+  57 001f A7 00       	         staa PORTA,x
+M68HC11 GAS  ioA.s 			page 2
+
+
+  58 0021 20 F0       	         bra again
+  59                 	
+  60                 	notClear: 
+  61 0023 81 31       	         cmpa #0x31
+  62 0025 26 09       	         bne notSet
+  63                 	
+  64                 	         #echo '1' and set led
+  65 0027 BD FF B8    	         jsr OUTA
+  66 002a 86 FF       	         ldaa #ONLED
+  67 002c A7 00       	         staa PORTA,x
+  68 002e 20 E3       	         bra again
+  69                 	notSet: 
+  70 0030 81 32       	         cmpa #0x32
+  71 0032 26 01       	         bne notReset 
+  72                 	
+  73                 	         # reset 
+  74 0034 3F          	         swi
+  75                 	
+  76                 	notReset: 
+  77                 	         # default
+  78 0035 20 DC       	         bra again
+  79                 	
+  80                 	;----------------------------------------------
+  81                 	;            Data (in Text section)
+  82                 	;----------------------------------------------
+  83 0037 48 65 6C 6C 	PROMPT: .asciz "Hello World CSCI 261 in Assembly"
+  83      6F 20 57 6F 
+  83      72 6C 64 20 
+  83      43 53 43 49 
+  83      20 32 36 31 
+  84 0058 04          	.byte eot
+  85                 	
+  86                 	.end
+M68HC11 GAS  ioA.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 ioA.s
+               ioA.s:0      .text:0000000000000000 L0F0
+               ioA.s:22     *ABS*:0000000000001000 RBASE
+               ioA.s:24     *ABS*:0000000000000000 PORTA
+               ioA.s:25     *ABS*:00000000000000ff ONLED
+               ioA.s:26     *ABS*:0000000000000000 OFFLED
+               ioA.s:27     *ABS*:000000000000ffcd INCHAR
+               ioA.s:28     *ABS*:000000000000ffb8 OUTA
+               ioA.s:29     *ABS*:000000000000ffc4 CRLF
+               ioA.s:30     *ABS*:000000000000ffca OUTSTRGO
+               ioA.s:31     *ABS*:0000000000000004 eot
+               ioA.s:39     .text:0000000000000000 _start
+               ioA.s:39     .text:0000000000000000 L0L0
+               ioA.s:41     .text:0000000000000003 L0L1
+               ioA.s:83     .text:0000000000000037 PROMPT
+               ioA.s:42     .text:0000000000000006 L0L2
+               ioA.s:43     .text:0000000000000009 L0L3
+               ioA.s:45     .text:000000000000000c L0L4
+               ioA.s:46     .text:000000000000000f L0L5
+               ioA.s:47     .text:0000000000000011 L0L6
+               ioA.s:49     .text:0000000000000013 again
+               ioA.s:49     .text:0000000000000013 L0L7
+               ioA.s:51     .text:0000000000000016 L0L8
+               ioA.s:52     .text:0000000000000018 L0L9
+               ioA.s:60     .text:0000000000000023 notClear
+               ioA.s:55     .text:000000000000001a L0L10
+               ioA.s:56     .text:000000000000001d L0L11
+               ioA.s:57     .text:000000000000001f L0L12
+               ioA.s:58     .text:0000000000000021 L0L13
+               ioA.s:61     .text:0000000000000023 L0L14
+               ioA.s:62     .text:0000000000000025 L0L15
+               ioA.s:69     .text:0000000000000030 notSet
+               ioA.s:65     .text:0000000000000027 L0L16
+               ioA.s:66     .text:000000000000002a L0L17
+               ioA.s:67     .text:000000000000002c L0L18
+               ioA.s:68     .text:000000000000002e L0L19
+               ioA.s:70     .text:0000000000000030 L0L20
+               ioA.s:71     .text:0000000000000032 L0L21
+               ioA.s:76     .text:0000000000000035 notReset
+               ioA.s:74     .text:0000000000000034 L0L22
+               ioA.s:78     .text:0000000000000035 L0L23
+
+UNDEFINED SYMBOLS
+_stack

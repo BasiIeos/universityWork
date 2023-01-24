@@ -1,0 +1,91 @@
+M68HC11 GAS  main.s 			page 1
+
+
+   1                 	;;;-----------------------------------------
+   2                 	;;; Start MC68HC11 gcc assembly output
+   3                 	;;; gcc compiler 3.3.6-m68hc1x-20060122
+   4                 	;;; Command:	/usr/lib/gcc-lib/m68hc11/3.3.6-m68hc1x-20060122/cc1 -quiet -D__GNUC__=3 -D__GNUC_MINOR
+   5                 	;;; Compiled:	Fri Dec 14 17:13:05 2018
+   6                 	;;; (META)compiled by GNU C version 6.3.0 20170221.
+   7                 	;;;-----------------------------------------
+   8                 		.file	"main.c"
+   9                 		.mode mshort
+  10                 		; extern	foo
+  11                 		; extern	increment
+  12                 		.sect	.text
+  13                 		.globl	main
+  14                 		.type	main,@function
+  15                 	main:
+  16 0000 3C          		pshx
+  17 0001 CE 00 05    		ldx	#5
+  18 0004 3C          		pshx
+  19 0005 CC 00 04    		ldd	#4
+  20 0008 8D 13       		bsr	foo
+  21 000a CC 00 17    		ldd	#23
+  22 000d 30          		tsx
+  23 000e ED 02       		std	2,x
+  24 0010 30          		tsx
+  25 0011 8F          		xgdx
+  26 0012 C3 00 02    		addd	#2
+  27 0015 8D 0D       		bsr	increment
+  28 0017 31          		ins
+  29 0018 31          		ins
+  30 0019 4F          		clra
+  31 001a 5F          		clrb
+  32 001b 38          		pulx
+  33 001c 39          		rts
+  34                 		.size	main, .-main
+  35                 		.globl	foo
+  36                 		.type	foo,@function
+  37                 	foo:
+  38 001d 30          		tsx
+  39 001e E3 02       		addd	2,x
+  40 0020 C3 00 03    		addd	#3
+  41 0023 39          		rts
+  42                 		.size	foo, .-foo
+  43                 		.globl	increment
+  44                 		.type	increment,@function
+  45                 	increment:
+  46 0024 8F          		xgdx
+  47 0025 6C 00       		inc	0,x
+  48 0027 39          		rts
+  49                 		.size	increment, .-increment
+  50                 		.comm	c,1,1
+  51                 		.ident	"GCC: (GNU) 3.3.6-m68hc1x-20060122"
+M68HC11 GAS  main.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+              main.s:0      .text:0000000000000000 L0F0
+              main.s:15     .text:0000000000000000 main
+              main.s:16     .text:0000000000000000 L0L0
+              main.s:17     .text:0000000000000001 L0L1
+              main.s:18     .text:0000000000000004 L0L2
+              main.s:19     .text:0000000000000005 L0L3
+              main.s:20     .text:0000000000000008 L0L4
+              main.s:37     .text:000000000000001d foo
+              main.s:21     .text:000000000000000a L0L5
+              main.s:22     .text:000000000000000d L0L6
+              main.s:23     .text:000000000000000e L0L7
+              main.s:24     .text:0000000000000010 L0L8
+              main.s:25     .text:0000000000000011 L0L9
+              main.s:26     .text:0000000000000012 L0L10
+              main.s:27     .text:0000000000000015 L0L11
+              main.s:45     .text:0000000000000024 increment
+              main.s:28     .text:0000000000000017 L0L12
+              main.s:29     .text:0000000000000018 L0L13
+              main.s:30     .text:0000000000000019 L0L14
+              main.s:31     .text:000000000000001a L0L15
+              main.s:32     .text:000000000000001b L0L16
+              main.s:33     .text:000000000000001c L0L17
+              main.s:38     .text:000000000000001d L0L18
+              main.s:39     .text:000000000000001e L0L19
+              main.s:40     .text:0000000000000020 L0L20
+              main.s:41     .text:0000000000000023 L0L21
+              main.s:46     .text:0000000000000024 L0L22
+              main.s:47     .text:0000000000000025 L0L23
+              main.s:48     .text:0000000000000027 L0L24
+                            *COM*:0000000000000001 c
+
+NO UNDEFINED SYMBOLS

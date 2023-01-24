@@ -1,0 +1,68 @@
+M68HC11 GAS  irqA.s 			page 1
+
+
+   1                 	;============================================-=
+   2                 	; File:
+   3                 	       .file "irqA.s" 
+   4                 	; Behaviour: 
+   5                 	;      Store in COUNT the  number of IRQs interrupts generated.
+   6                 	; Assumptions:
+   7                 	;      none
+   8                 	; Board:
+   9                 	;      CME11-E9-EVBU (with the PW link HACK)
+  10                 	; Author:
+  11                 	;      Peter Walsh
+  12                 	;============================================-=
+  13                 	
+  14                 	;----------------------------------------------
+  15                 	;            Text Section (code)
+  16                 	;----------------------------------------------
+  17                 	.sect .text
+  18                 	.global _start
+  19                 	
+  20                 	;---------------------------------------------
+  21                 	; Behaviour: 
+  22                 	;    Interrupt Service Routine
+  23                 	;    Store in COUNT the number of times this routine is invoked.
+  24                 	; Assumptions:
+  25                 	;    none
+  26                 	; Restriction:
+  27                 	;    none
+  28                 	; Register and Memory Usage:
+  29                 	;    Precondition:
+  30                 	;    Postcondition:
+  31                 	;       COUNT is incremented by 1
+  32                 	;    Destroys:
+  33                 	;       none
+  34                 	;---------------------------------------------
+  35                 	
+  36                 	irqCount:
+  37 0000 B6 00 00    	               ldaa COUNT
+  38 0003 4C          	               inca
+  39 0004 B7 00 00    	               staa COUNT
+  40 0007 3B          	xirqCount:     rti
+  41                 	
+  42                 	_start: 
+  43 0008 8E 00 00    	               lds #_stack    ; initialize SP
+  44 000b 86 7E       	               ldaa #0x7e
+  45 000d B7 00 EE    	               staa 0x00ee
+  46 0010 CC 00 00    	               ldd #irqCount
+  47 0013 FD 00 EF    	               std 0x00ef
+  48                 	
+  49 0016 0E          	               cli
+  50 0017 7E 00 00    	loop:	       jmp loop
+  51                 	;-----------------------------------------
+  52                 	;         Data Area
+  53                 	
+  54                 	;-----------------------------------------
+  55 001a 00          	COUNT: .byte  0
+  56                 	
+  57                 	#set up dummy frame pointer
+M68HC11 GAS  irqA.s 			page 2
+
+
+  58                 	.global _.frame
+  59                 	_.frame: .word
+  60                 	
+  61                 	
+  62                 	.end

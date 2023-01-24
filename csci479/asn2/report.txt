@@ -1,0 +1,32 @@
+1) To compile my program, use command "make". To execute my program, use command "./pex2 [yourtestfilename]". No subfolders needed;
+2) The format of the input for the test should be:
+The number of distinct symbols
+The symbols separated by space
+The number of triples in the Constraints
+For each triple
+symbol1 symbol2 symbol3
+...
+For example:
+7
+a b c d e f g
+3
+c e f
+f d e
+e a g
+3) If my AI agent finds the solution, program outputs "Found a solution to the problem!", then outputs combination variable = value on separate lines; if my AI agent fails to find a solution, program outputs "The problem has no solutions :(";
+4) The program state is maintained in arguments of the magic function:
+answer - stores all values already built, 0's for the ones not touched;
+constraints - stores constraints
+sortedFrequency - stores numbers of variables sorted by their frequency (needed for MCV)
+used - stores used variables
+nOSymbols - total number of symbols
+5) The heuristics are implemented as such:
+MCV: the program sorts the variables by frequency of their appearance in the constraints, the most frequent variable is the most constrained one, therefore that is the variable to be assigned a value first;
+LCV: ok, I believe I have cheated a little bit, but I still did some work! Basically what I'm saying is for n variables having 2^n - 1 values is enough to not constraint values for variables chosen in the future. Here's the proof:
+Proof by induction:
+1. Base: n = 1 - for 1 variable 1 value is enough. Done
+2. Assumption: let the statement be true for n = k - 1, i.e. for k - 1 variables 2^(k - 1) - 1 is enough values to not constraint future variables;
+3. Step let us prove the statement for n = k; for the first variable choose value 2^(k - 1), we have 2^(k - 1) - 1 values less than 2^(k - 1), and we have 2^(k - 1) - 1 values more than 2^(k - 1). Because of assumption we know that there are enough values less than 2^(k - 1) to store k - 1 variables and there are enough values more than 2^(k - 1) to store k - 1 variables. Therefore we can store all k variables. Done
+All of that says that because I am intelligent with choosing the value for variables I don't need to find the least constraint value, I already know a value that does not constraint anything, and that value is 2^(n - k) for k-th chosen variable. 2^(n - k) is if we want to put that variable at the start of the ascending order, if we want to put the variable after any other one, just add the value of the other variable to 2^(n - k) and we have enough space in every gap between the values to place the rest of the values. This is cool, but there is 1 disadvantage: we can only have up to 64 variables since the largest type of number (unsigned long long) only store 2^64 numbers. However, I believe this disadvantage is not very important since searching for answer for more than 64 variables is probably too time consuming either way.
+6) No known bugs.
+7) No additional comments.

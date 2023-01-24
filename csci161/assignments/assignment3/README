@@ -1,0 +1,6 @@
+1) This program is used to help the dispatcher in a Taxi company to manage taxi reservations in 2 days: today and tomorrow.
+2) The program includes 3 files: implementation of Reservation and ReservationList classes, implementation of their methods and main. I chose that design because linked list is required for this assignment.
+3) In class ReservationList I used linked list with data as Reservation class object. Linked list's advantages are low usage of memory, easy add/remove functions. Alternative way is to use vector, but is is harder to remove somthing from it.
+4) I completed every part of the assignment.
+5) I tested the program on the test provided in assignment. The results were the same as in the assignment.
+6) No known bugs.
